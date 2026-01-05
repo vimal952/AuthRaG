@@ -1,0 +1,41 @@
+# Environment and Secrets
+.env
+.env.*
+*.env
+backend/.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Frontend / Node
+node_modules/
+dist/
+dist-ssr/
+.eslintcache
+
+# Local Databases and Volumes
+chroma_db/
+chroma_data/
+mongo_data/
+chroma_db_backend/
+
+# OS / Editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
