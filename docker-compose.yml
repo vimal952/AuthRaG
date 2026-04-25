@@ -1,0 +1,36 @@
+services:
+  mongodb:
+    image: mongo:7
+    restart: unless-stopped
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: enterprise_copilot
+
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongodb
+    env_file:
+      - ./backend/.env
+    environment:
+      MONGO_URL: mongodb://mongodb:27017
+      MONGO_DB: enterprise_copilot
+      CHROMA_PATH: /app/chroma_db
+    volumes:
+      - chroma_db_backend:/app/chroma_db
+
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  mongo_data:
+  chroma_db_backend:
